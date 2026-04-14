@@ -1,3 +1,21 @@
+<template>
+  <div class="app-shell">
+    <OceanScene
+      :fold-direction="foldDirection"
+      :fold-strength="foldStrength"
+      :current-month="currentMonth"
+    />
+    <ControlPanel
+      :active-fold-direction="activeFoldDirection"
+      :fold-strength="foldStrength"
+      :current-month="currentMonth"
+      @update:fold-direction="handleDirectionChange"
+      @update:fold-strength="foldStrength = $event"
+      @update:current-month="handleMonthChange"
+    />
+  </div>
+</template>
+
 <script setup lang="ts">
 import { ref } from 'vue';
 import ControlPanel from './components/ControlPanel.vue';
@@ -25,24 +43,6 @@ function handleMonthChange(nextMonth: number): void {
   foldStrength.value = 0;
 }
 </script>
-
-<template>
-  <div class="app-shell">
-    <OceanScene
-      :fold-direction="foldDirection"
-      :fold-strength="foldStrength"
-      :current-month="currentMonth"
-    />
-    <ControlPanel
-      :active-fold-direction="activeFoldDirection"
-      :fold-strength="foldStrength"
-      :current-month="currentMonth"
-      @update:fold-direction="handleDirectionChange"
-      @update:fold-strength="foldStrength = $event"
-      @update:current-month="handleMonthChange"
-    />
-  </div>
-</template>
 
 <style scoped>
 .app-shell {

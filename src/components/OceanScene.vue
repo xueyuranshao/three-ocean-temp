@@ -1,3 +1,7 @@
+<template>
+  <div ref="rootElement" class="scene-root"></div>
+</template>
+
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { createOceanScene, type FoldDirection, type OceanSceneController } from '../lib/oceanScene';
@@ -32,10 +36,6 @@ onBeforeUnmount(() => {
   controller = null;
 });
 </script>
-
-<template>
-  <div ref="rootElement" class="scene-root"></div>
-</template>
 
 <style scoped>
 .scene-root {

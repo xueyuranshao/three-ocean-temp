@@ -1,34 +1,3 @@
-<script setup lang="ts">
-import type { FoldDirection } from '../lib/oceanScene';
-
-const monthLabels = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'] as const;
-
-defineProps<{
-  activeFoldDirection: FoldDirection | null;
-  foldStrength: number;
-  currentMonth: number | null;
-}>();
-
-const emit = defineEmits<{
-  'update:foldDirection': [value: FoldDirection];
-  'update:foldStrength': [value: number];
-  'update:currentMonth': [value: number];
-}>();
-
-function selectDirection(nextDirection: FoldDirection): void {
-  emit('update:foldDirection', nextDirection);
-}
-
-function selectMonth(nextMonth: number): void {
-  emit('update:currentMonth', nextMonth);
-}
-
-function updateStrength(event: Event): void {
-  const target = event.target as HTMLInputElement;
-  emit('update:foldStrength', Number(target.value));
-}
-</script>
-
 <template>
   <aside class="control-panel">
     <div class="panel-title">三维温度场可视分析</div>
@@ -70,6 +39,37 @@ function updateStrength(event: Event): void {
     </div>
   </aside>
 </template>
+
+<script setup lang="ts">
+import type { FoldDirection } from '../lib/oceanScene';
+
+const monthLabels = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'] as const;
+
+defineProps<{
+  activeFoldDirection: FoldDirection | null;
+  foldStrength: number;
+  currentMonth: number | null;
+}>();
+
+const emit = defineEmits<{
+  'update:foldDirection': [value: FoldDirection];
+  'update:foldStrength': [value: number];
+  'update:currentMonth': [value: number];
+}>();
+
+function selectDirection(nextDirection: FoldDirection): void {
+  emit('update:foldDirection', nextDirection);
+}
+
+function selectMonth(nextMonth: number): void {
+  emit('update:currentMonth', nextMonth);
+}
+
+function updateStrength(event: Event): void {
+  const target = event.target as HTMLInputElement;
+  emit('update:foldStrength', Number(target.value));
+}
+</script>
 
 <style scoped>
 .control-panel {
